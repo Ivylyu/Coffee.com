@@ -1,0 +1,8 @@
+extends layout
+
+block content
+  h1= item.title
+  h5 haha #{item.body}
+  hr
+  a.btn.btn-default(href='/cart/edit/'+item._id) Add
+  a.btn.btn-danger.delete-item(href='#',data-id=item._id) Delete

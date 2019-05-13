@@ -1,0 +1,13 @@
+extends layout
+
+block content
+    h1 #{title}
+    form(method='POST', action='/cart/edit/'+item._id)
+      #form-group
+        label Title:
+        input.form-control(name='title', type='text', value=item.title)
+      #form-group
+        label Body:
+        textarea.form-control(name='body')= item.body
+      br
+      input.btn.btn-primary(type='submit',value='Submit')

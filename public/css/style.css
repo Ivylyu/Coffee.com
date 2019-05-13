@@ -1,0 +1,23 @@
+.messages {
+    margin-top: 20px;
+}
+
+h1 {
+    margin-top:20px;
+}
+
+.alert-error{
+    color :#a94442;
+    background-color: #f2dede;
+    border-color: #abccd1;
+}
+
+.alert-success_msg{
+    color:#3c763d;
+    background-color: #dff0d8;
+    border-color:#d6e9c6;
+}
+
+.alert-danger{
+    margin-top: 20px;
+}

@@ -1,0 +1,23 @@
+extends layout
+
+block content
+    h1 #{title}
+    form(method='POST', action='/cart/add')
+      #form-group
+        label Title:
+        input.form-control(name='title', type='text')
+      #form-group
+        label Body:
+        textarea.form-control(name='body')
+        br
+        input.btn.btn-primary(type='submit',value='Submit')
+        
+      .container
+      block content
+          br
+          ul.list-group
+            each item, i in Menu
+              li.list-group-item
+                a(href="/cart/"+item._id)= item.title
+          input#myBtn(onclick='change()', type='button', value='Submit Order')
+    script(src='/js/temp.js')
