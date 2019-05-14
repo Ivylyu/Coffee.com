@@ -20,15 +20,14 @@ router.post('/register',
       check('password').not().isEmpty().withMessage('password is required'),
       check('password2').custom((value, { req }) => {
         if (value !== req.body.password) {
-          throw new Error('Password does not match' + req.body.password + req.body.password2);
-        }}),],(req,res)=>{
-    // const errorFormatter = ({ location, msg, param, value, nestedErrors }) => {
-    //     // Build your resulting errors however you want! String, object, whatever - it works!
-    //     return `${msg}`;
-    // }
-    //.formatWith(errorFormatter);
+          throw new Error('Password does not match');
+        } else {
+            return true;
+        }
+    }),
+    ],(req,res)=>{
     const errors = validationResult(req);
-   
+
     if (!errors.isEmpty()) {
       res.render('register',{
         errors:errors.array()
@@ -38,13 +37,11 @@ router.post('/register',
         const email = req.body.email;
         const username = req.body.username;
         const password = req.body.password;
-        const password2 = req.body.password2;
         let newUser = new User({
             name:name,
             email:email,
             username:username,
             password:password,
-            password2:password2
         })  
   
     //bcrypt the password
