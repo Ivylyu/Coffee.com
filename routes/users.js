@@ -20,7 +20,7 @@ router.post('/register',
       check('password').not().isEmpty().withMessage('password is required'),
       check('password2').custom((value, { req }) => {
         if (value !== req.body.password) {
-          throw new Error('Password does not match');
+          throw new Error('Password does not match' + req.body.password + req.body.password2);
         }}),],(req,res)=>{
     // const errorFormatter = ({ location, msg, param, value, nestedErrors }) => {
     //     // Build your resulting errors however you want! String, object, whatever - it works!
