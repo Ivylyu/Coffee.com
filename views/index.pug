@@ -5,4 +5,5 @@ block content
     ul.list-group
       each item, i in Menu
         li.list-group-item
-          a(href="/cart/"+item._id)= item.title
+          a(href="/menu/"+item._id)= item.title  
+          a(href="/menu/"+item._id)= item.price

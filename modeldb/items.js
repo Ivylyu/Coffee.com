@@ -6,8 +6,12 @@ let itemSchema = mongoose.Schema({
         type:String,
         required:true
     },
-    body:{
+    description:{
         type:String,
+        required:true
+    },
+    price:{ 
+        type:Number,
         required:true
     }
 });

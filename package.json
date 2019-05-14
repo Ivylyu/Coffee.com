@@ -6,12 +6,13 @@
   "scripts": {
     "start": "node app"
   },
-  "author": "",
+  "author": "Ivy",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "bower": "^1.8.8",
     "connect-flash": "^0.1.1",
+    "connect-mongo": "^2.0.3",
     "express": "^4.16.4",
     "express-messages": "^1.0.1",
     "express-session": "^1.16.1",

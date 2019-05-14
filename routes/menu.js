@@ -1,26 +1,23 @@
 const express = require('express');
 const router = express.Router();
 
-
 //bring in users model
 let Menu = require('../modeldb/items');
 let User = require('../modeldb/user');
 
 //add route
-router.get('/add',ensureAuthenticated,function(req,res){
-    Menu.find({}, (err,items) => {
+
+router.get('/add',function(req,res){
+    Menu.find({}, (err,item) => {
         if(err){
             console.log(err);
-        } else {
-        res.render('add_to_cart', {
-            title:'Cart',
-            Menu: items 
+        } 
+        res.render('item',{
+            title: item.title,
+            description:item.description,
+            price:item.price
         });
-    }
     });
-    // res.render('add_to_cart', {
-    //     title:'Cart'
-    // });
 });
 
 //add a submit POST Route
@@ -55,8 +52,9 @@ router.get('/edit/:id',(req,res)=>{
 router.post('/edit/:id',(req,res)=>{
     let item = {};
     item.title = req.body.title;
-    item.body = req.body.body;
-
+    item.description = req.body.description;
+    item.price = req.body.price;
+    
     let query = {_id:req.params.id}
 
     Menu.updateOne(query, item, (err)=>{

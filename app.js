@@ -5,7 +5,9 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 const config = require('./config/database');
 const passport = require('passport')
-
+const MongoStore = require('connect-mongo')(session);
+let Cart = require('./modeldb/cart')
+const router = express.Router();
 
 mongoose.connect(config.database);
 let db = mongoose.connection;
@@ -40,17 +42,20 @@ app.use(express.static(path.join(__dirname,'public')));
 app.use(session({
     secret: 'keyboard cat',
     resave: true,
-    saveUninitialized: true
+    saveUninitialized: true,
+    store:new MongoStore({ mongooseConnection: db }),
+    cookie:{ maxAge:100*60*1000 }
 }))
 
 // //Express Messages Middleware
 app.use(require('connect-flash')());
 app.use((req,res,next)=>{
+    res.locals.lohin = req.isAuthenticated;
     res.locals.messages = require('express-messages')(req,res);
+    res.locals.session = req.session;
     next();
 });
 
-// // Express validator MiddleWare
 
 //passport config
 require('./config/passport')(passport);
@@ -62,26 +67,15 @@ app.get('*', (req,res,next)=>{
     res.locals.user = req.user || null;
     next();
 })
-//home router
-app.get('/', function(req,res){
-    Menu.find({}, (err,items) => {
-        if(err){
-            console.log(err);
-        } else {
-        res.render('index', {
-            title:'Menu',
-            Menu: items 
-        });
-    }
-    });
-});
-
 
 //route files
-let items = require('./routes/cart');
- let users = require('./routes/users');
- app.use('/cart',items)
- app.use('/users',users)
+let items = require('./routes/menu');
+let users = require('./routes/users');
+let index = require('./routes/index')
+
+app.use('/menu',items)
+app.use('/users',users)
+app.use('/',index)
 
 app.listen(3080, function(){
     console.log('Server is lisitening on port 3080!');
