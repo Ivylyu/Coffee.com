@@ -16,7 +16,9 @@ html
               | Menu 
           if user
             li.nav-item
-              a.nav-link(href='/cart') Your Cart
+              a.nav-link(href='/add_to_cart') Your Cart 
+                if session.cart
+                  span.badge.badge-pill.badge-light #{session.cart.totalQty}
         ul.nav.navbar-nav.ml-auto
           if user
             li
