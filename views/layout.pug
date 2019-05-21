@@ -27,12 +27,13 @@ html
             li
               a.nav-link(href='/users/register') Register
             li
-              a.nav-link(href='/users/login') Login         
+              a.nav-link(href='/users/login') Login
     .container
       != messages('message', locals)
       if errors
         each error, i in errors
           div(class ="alert alert-danger") #{error.msg}
+    #paypal-button-container 
       block content
       br
       hr

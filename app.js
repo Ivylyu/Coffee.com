@@ -6,7 +6,6 @@ const session = require('express-session');
 const config = require('./config/database');
 const passport = require('passport')
 const MongoStore = require('connect-mongo')(session);
-let Cart = require('./modeldb/cart')
 const router = express.Router();
 
 mongoose.connect(config.database);
@@ -71,11 +70,12 @@ app.get('*', (req,res,next)=>{
 //route files
 let items = require('./routes/menu');
 let users = require('./routes/users');
-let index = require('./routes/index')
+let index = require('./routes/index');
 
 app.use('/menu',items)
 app.use('/users',users)
 app.use('/',index)
+
 
 app.listen(3080, function(){
     console.log('Server is lisitening on port 3080!');

@@ -21,3 +21,8 @@ h1 {
 .alert-danger{
     margin-top: 20px;
 }
+
+#paypal-button-container {
+    margin-left: 200px;
+    width: 100%,
+}
