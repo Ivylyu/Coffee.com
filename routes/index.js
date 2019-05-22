@@ -28,11 +28,31 @@ router.get('/cart/:id',function(req,res){
              return res.redirect('/')
          } 
          cart.add(item,item.id);
+         console.log(item);
          req.session.cart = cart;
          //console.log(req.session.cart);
          res.redirect('/');
      });
  });
+
+ router.delete('/cart/:id',(req,res)=>{
+    let pID = req.params.id;
+    let cart = new Cart(req.session.cart ? req.session.cart :{items:{}})
+    //let query = {_id:req.params.id}
+    req.session.cart = cart;
+    res.redirect('/');
+    Menu.findById(pID, (err,item) => {
+        if(err){
+            return res.redirect('/')
+        } 
+        cart.removeByOne(item,pID);
+        console.log(item._id);
+        console.log(pID);
+        req.session.cart = cart;
+        //console.log(req.session.cart);
+        res.redirect('/');
+    });
+});
 
  router.get('/add_to_cart', (req,res,next) =>{
      if(!req.session.cart){

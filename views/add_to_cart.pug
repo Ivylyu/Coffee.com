@@ -4,10 +4,10 @@ block content
     h1 Your Cart
     if items
       .row
-        .col-sm-6.col-md-6.col-md-offset-3.col-sm-offset-3
+        .col-sm-6.col-md-12.col-md-offset-3.col-sm-offset-3
           ul.list-group
             each item, i in items
-              <li class='list-group-item d-flex justify-content-between align-items-center'><strong>#{item.item.title}</strong><span class='badge badge-success'>$#{item.price}</span><span><input type='number' class='form-control text-center' onchange="location.href='/menu/'+#{item.id}" value=#{item.qty}></span></li> 
+              <li class='list-group-item d-flex justify-content-between align-items-center'><strong>#{item.item.title}</strong><span class='badge badge-success'>$#{item.item.price}</span><span>#{item.item.description}</span><ul class='btn-numbox'><li><ul class="count"><li><span id="num-jian" class="num-jian">-</span></li><li><input type="text" class="input-num" id="input-num" value=#{item.qty} /></li><li><span id="num-jia" class="num-jia">+</span></li></ul></li></ul></li> 
       .row
         .col-sm-6.col-md-6.col-md-offset-3.col-sm-offset-3
           strong Total: $#{totalPrice}
@@ -19,6 +19,8 @@ block content
       .row
         .col-sm-6.col-md-6.col-md-offset-3.col-sm-offset-3
           h2 No items in Cart
+    script(src='/bower_components/jquery/dist/jquery.js')
+    script(src='/js/remove_from_cart.js')
 
 
 

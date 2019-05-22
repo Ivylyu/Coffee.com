@@ -41,6 +41,4 @@ function stripeTokenHandler(token){
 
   // Submit the form
 //   form.submit();
-       
-    
 }
