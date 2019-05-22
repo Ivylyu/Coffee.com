@@ -6,6 +6,10 @@ let itemSchema = mongoose.Schema({
         type:String,
         required:true
     },
+    cupSize:{
+        type:String,
+        required:true
+    },
     description:{
         type:String,
         required:true

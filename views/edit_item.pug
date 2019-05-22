@@ -2,12 +2,11 @@ extends layout
 
 block content
     h1 #{title}
-    form(method='POST', action='/cart/edit/'+item._id)
+    form(method='POST', action='/menu/edit/'+item._id)
       #form-group
-        label Title:
-        input.form-control(name='title', type='text', value=item.title)
+        label Title:  #{item.title}
       #form-group
-        label Body:
-        textarea.form-control(name='body')= item.body
+        label Description:
+        textarea.form-control(name='body')= item.description
       br
       input.btn.btn-primary(type='submit',value='Submit')

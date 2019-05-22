@@ -4,6 +4,5 @@ block content
     h1 #{title}
     ul.list-group
       each item, i in Menu
-        li.list-group-item
-          a(href="/menu/"+item._id)= item.title  
-          a(href="/menu/"+item._id)= item.price
+        li.list-group-item.col-12.col-md-8
+          <a href="menu/#{item._id}">#{item.title}&nbsp&nbsp</a><a>#{item.cupSize}</a><a>&nbsp$#{item.price}</a>

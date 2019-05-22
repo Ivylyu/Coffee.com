@@ -6,22 +6,50 @@ mongoose.connect(config.database,{ useNewUrlParser: true });
 let items = [
     new Menu({
         title: 'flat white',
-        description: 'medium',
+        cupSize: 'small',
+        description: 'write your customization here',
+        price: 3
+    }),
+    new Menu({
+        title: 'flat white',
+        cupSize: 'medium',
+        description: 'write your customization here',
+        price: 4
+    }),
+    new Menu({
+        title: 'flat white',
+        cupSize: 'large',
+        description: 'write your customization here',
         price: 5
     }),
     new Menu({
         title: 'latte',
-        description: 'medium',
+        cupSize: 'small',
+        description: 'write your customization here',
+        price: 3
+    }),
+    new Menu({
+        title: 'latte',
+        cupSize: 'medium',
+        description: 'write your customization here',
+        price: 4
+    }),
+    new Menu({
+        title: 'latte',
+        cupSize: 'large',
+        description: 'write your customization here',
         price: 5
     }),
     new Menu({
         title: 'cake',
-        description: 'sweet',
+        cupSize: '-',
+        description: 'sweet carrot cake',
         price: 7
     }),
     new Menu({
         title: 'preztel',
-        description: 'small',
+        cupSize: '-',
+        description: 'original',
         price: 7
     }),
 ];

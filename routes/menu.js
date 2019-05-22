@@ -42,7 +42,7 @@ router.post('/add',(req,res)=>{
 router.get('/edit/:id',(req,res)=>{  
     Menu.findById(req.params.id,(err, item)=>{
         res.render('edit_item',{
-            title: 'Customize your Coffee',
+            title: 'Customize your item',
             item:item
         });
     });
@@ -51,25 +51,24 @@ router.get('/edit/:id',(req,res)=>{
 //update submit post route
 router.post('/edit/:id',(req,res)=>{
     let item = {};
-    item.title = req.body.title;
-    item.description = req.body.description;
-    item.price = req.body.price;
+    item.description = req.body.body;
     
     let query = {_id:req.params.id}
+    //console.log(req.body.body);
 
     Menu.updateOne(query, item, (err)=>{
         if(err){
             console.log(err);
             return;
         } else {
-            req.flash('success','cart updated');
-            res.redirect('/');
+            req.flash('success','item updated');
+            res.redirect('/menu/'+ query._id);
         }
     })
 });
 
 //Get Singhle item
-router.get('/:id',(req,res)=>{
+router.get('/:id',ensureAuthenticated,(req,res)=>{
     Menu.findById(req.params.id, (err,item)=>{
         res.render('item', {
             item:item
