@@ -4,6 +4,7 @@ const Cart = require('../modeldb/cart');
 
 //bring in users model
 let Menu = require('../modeldb/items');
+let Order = require('../modeldb/order');
 
 //home router
 router.get('/', function(req,res){
@@ -70,13 +71,23 @@ router.get('/cart/:id',function(req,res){
             req.flash('error',err.message);
             return res.redirect('/checkout');
         } else {
-         req.flash('success','Successfully bought the product!');
-         req.session.cart = null;
-         res.redirect('/');     
+         var order = new Order({
+             user:req.user,
+             cart:cart,
+             name:req.body.name,
+             paymentId:charge.id
+         });
+         order.save((err)=>{
+            if(err)
+            {
+               console.log(req.body);
+               return;
+            }
+            req.flash('success','Successfully bought the product!');
+            req.session.cart = null;
+            res.redirect('/');   
+         })
         }
        });
-     
-
-   
  })
 module.exports = router;
